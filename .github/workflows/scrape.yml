@@ -18,12 +18,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: node scrape
-    - run: git config --global user.email "ci@github.com"
-    - run: git config --global user.name "Github CI"
-    - run: git add -A
-    - run: git commit -m "Scraping"
+    - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    - run: git config --global user.name "github-actions[bot]"
+    - run: git commit -m "Scraping" -a
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.6.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
