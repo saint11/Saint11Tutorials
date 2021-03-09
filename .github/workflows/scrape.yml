@@ -16,12 +16,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: node scrape
-    - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    - run: git config --global user.name "github-actions[bot]"
-    - run: git commit -m "Scraping" -a
-    - name: GitHub Push
-      uses: ad-m/github-push-action@v0.6.0
+    - name: Install and Scrape 🔧
+      run: /
+        npm ci
+        node scrape
+    - name: Push to github pages 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
+        single-commit: true
         branch: gh-pages
+        folder: .
