@@ -1,0 +1,26 @@
+name: Scrape and Push
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [15.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Scrape 🔧
+      run: node scrape
+    - name: Push to github pages 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        single-commit: true
+        branch: gh-pages
+        folder: .
