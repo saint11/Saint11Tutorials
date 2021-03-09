@@ -18,6 +18,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: node scrape
+    - run: git config --global user.email "ci@github.com"
+    - run: git config --global user.name "Github CI"
     - run: git add -A
     - run: git commit -m "Scraping"
     - name: GitHub Push
