@@ -16,10 +16,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install and Scrape 🔧
-      run: /
-        npm ci
-        node scrape
+    - name: Scrape 🔧
+      run: node scrape
     - name: Push to github pages 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
